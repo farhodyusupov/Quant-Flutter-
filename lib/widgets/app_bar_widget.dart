@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quant_flutter_new/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBarWidget extends StatefulWidget {
   const AppBarWidget({Key? key}) : super(key: key);
@@ -14,12 +16,12 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.menu, color: Colors.white,)),
+          IconButton(onPressed: (){}, icon: SvgPicture.asset("assets/icons/menu.svg", color: Color(0xFFFFFFFF))),
           Container(
             child: Row(
               children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.visibility_off_outlined, color: Colors.white,)),
-                IconButton(onPressed: (){}, icon: Icon(Icons.notifications, color: Colors.white,)),
+                IconButton(onPressed: (){}, icon: SvgPicture.asset("assets/icons/unview.svg", color: Color(0xFFFFFFFF),)),
+                IconButton(onPressed: (){}, icon: SvgPicture.asset("assets/icons/notification.svg", color:Color(0xFFFFFFFF),)),
               ],
             ),
           ),
