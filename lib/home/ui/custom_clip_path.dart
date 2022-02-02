@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 
 class MyClipper extends CustomClipper<Path>{

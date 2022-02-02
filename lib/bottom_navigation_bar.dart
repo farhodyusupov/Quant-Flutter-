@@ -20,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     super.initState();
   }
 
-  var screens = [
+  var screens = const [
     UslugiPage(),
     HomePage(),
     IzbrannoyPage()

@@ -5,7 +5,9 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class HideCardNumberState extends HomeState{
+
+class HideCardSummaState extends HomeState{
   final bool isHide;
-  HideCardNumberState( this.isHide);
+
+  HideCardSummaState(this.isHide);
 }
