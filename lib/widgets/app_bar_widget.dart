@@ -41,7 +41,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 ),
                 IconButton(
                     onPressed: () {},
-                    icon: SvgPicture.asset(
+                    icon:
+                    SvgPicture.asset(
                       "assets/icons/notification.svg",
                       color: const Color(0xFFFFFFFF),
                     )),

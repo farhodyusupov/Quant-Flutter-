@@ -6,8 +6,8 @@ import 'package:quant_flutter_new/home/model/lists.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:quant_flutter_new/home/ui/clip_path_widget.dart';
 import 'package:quant_flutter_new/widgets/app_bar_widget.dart';
-import 'package:quant_flutter_new/widgets/graphic_widget.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quant_flutter_new/home/model/lists.dart';
 import 'chart_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,32 +20,33 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageController controller = PageController();
   bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-
       decoration: const BoxDecoration(
-
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[childCareColor1, childCareColor2],
         ),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
+      child: SafeArea(
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: AppBarWidget(),
-        ),
-        body: Column(
-          children: [
-            carousel(),
-            const LineChartWidget(),
-            transaction(),
-          ],
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: AppBarWidget(),
+          ),
+          body: Column(
+            children: [
+              carousel(),
+              const LineChartWidget(),
+              transaction(),
+            ],
+          ),
         ),
       ),
     );
@@ -149,20 +150,51 @@ class _HomePageState extends State<HomePage> {
     return Expanded(
       child: ClipPath(
         clipper: ClipPathClass(),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(7)),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            color: Colors.white,
-            child: TextButton(
-              onPressed: (){
-                print(selected);
-                setState(() {
-                  selected=!selected;
-                });
-              },
-              child: const Text("click me"),
-            ),
+        child: Container(
+          margin: EdgeInsets.all(0),
+          padding: EdgeInsets.all(0),
+          alignment: Alignment.topCenter,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                "assets/icons/topButton.svg",
+                color: Color(0xffEFF1FF),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.all(15),
+                  itemCount: transactions.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Card(
+                          child: Container(
+                            child: Image.asset(transactions[index].image),
+                            height: 60,
+                            width: 60,
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              transactions[index].paymentTo
+                            ),
+                            Text(transactions[index].number)
+                          ],
+                        ),
+                        Text(transactions[index].summ.toString()),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
