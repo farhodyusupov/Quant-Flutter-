@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:quant_flutter_new/constants.dart';
 import 'package:quant_flutter_new/home/bloc/home_bloc.dart';
 import 'package:quant_flutter_new/home/model/lists.dart';
@@ -48,6 +49,63 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget twoButton() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            onPressed: () {},
+            child: Container(
+              alignment: Alignment.center,
+              height: 40,
+              width: MediaQuery.of(context).size.width/9*4,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Color(0xff7BA3F2)
+
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset("assets/icons/receipt.svg"),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text("Оплата", style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),),
+                ],
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Container(
+              alignment: Alignment.center,
+              height: 40,
+              width: MediaQuery.of(context).size.width/9*4,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: Color(0xff7BA3F2)
+
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset("assets/icons/arrows.svg"),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text("Переводы", style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -162,38 +220,86 @@ class _HomePageState extends State<HomePage> {
                 "assets/icons/topButton.svg",
                 color: Color(0xffEFF1FF),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
+              Container(
+                  padding: EdgeInsets.only(left: 20),
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    "Транзакции",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Color(0xff202020),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "Proxima"),
+                  )),
               Expanded(
                 child: ListView.builder(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.only(top: 20, right: 22),
                   itemCount: transactions.length,
                   itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Card(
-                          child: Container(
-                            child: Image.asset(transactions[index].image),
-                            height: 60,
-                            width: 60,
+                    return Container(
+                      padding: EdgeInsets.only(bottom: 14, left: 14),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                child: Image.asset(transactions[index].image),
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xff17979797), width: 1.3),
+                                  borderRadius: BorderRadius.circular(
+                                    8,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 14,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    transactions[index].paymentTo,
+                                    style: const TextStyle(
+                                        color: Color(0xff202020),
+                                        fontSize: 14,
+                                        fontFamily: "Proxima",
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(transactions[index].number,
+                                      style: TextStyle(
+                                          color: const Color(0xff202020)
+                                              .withOpacity(0.5),
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Proxima"))
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              transactions[index].paymentTo
-                            ),
-                            Text(transactions[index].number)
-                          ],
-                        ),
-                        Text(transactions[index].summ.toString()),
-                      ],
+                          Text(
+                            transactions[index].summ.toString() + " сум",
+                            style: const TextStyle(
+                                color: Color(0xff202020),
+                                fontSize: 11,
+                                fontFamily: "Proxima",
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
               ),
+              twoButton(),
+
             ],
           ),
         ),
