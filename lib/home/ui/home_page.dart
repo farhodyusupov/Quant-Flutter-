@@ -10,6 +10,7 @@ import 'package:quant_flutter_new/widgets/app_bar_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quant_flutter_new/home/model/lists.dart';
 import 'chart_widget.dart';
+import 'drawer_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageController controller = PageController();
   bool selected = false;
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +37,16 @@ class _HomePageState extends State<HomePage> {
       ),
       child: SafeArea(
         child: Scaffold(
+          key: _scaffoldkey,
+          endDrawer: CustomDrawer(
+            size: size,
+          ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            actions: const [
+              SizedBox()
+            ],
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: AppBarWidget(),
@@ -44,8 +54,36 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               carousel(),
-              const LineChartWidget(),
-              transaction(),
+              Stack(
+                children: [
+                  const LineChartWidget(),
+                  Positioned(
+                    right: 0,
+                    top: size.height / 19,
+                    child: GestureDetector(
+                      onTap: () {
+                        _scaffoldkey.currentState!.openEndDrawer();
+                      },
+                      child: Container(
+                        width: 14,
+                        height: 68,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF7BA3F2),
+                          border: Border.all(color: Colors.white),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.2),
+                            bottomLeft: Radius.circular(4.2),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                top: size.height / 2,
+                child: transaction(),
+              ),
             ],
           ),
         ),
@@ -64,12 +102,10 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              width: MediaQuery.of(context).size.width/9*4,
+              width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Color(0xff7BA3F2)
-
-              ),
+                  borderRadius: BorderRadius.circular(7),
+                  color: Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -77,7 +113,13 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text("Оплата", style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),),
+                  Text(
+                    "Оплата",
+                    style: TextStyle(
+                        color: Color(0xffFFFFFF),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ],
               ),
             ),
@@ -87,12 +129,10 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              width: MediaQuery.of(context).size.width/9*4,
+              width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Color(0xff7BA3F2)
-
-              ),
+                  borderRadius: BorderRadius.circular(7),
+                  color: Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -100,7 +140,13 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text("Переводы", style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),),
+                  Text(
+                    "Переводы",
+                    style: TextStyle(
+                        color: Color(0xffFFFFFF),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ],
               ),
             ),
@@ -285,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           Text(
-                            transactions[index].summ.toString() + " сум",
+                            "-" + transactions[index].summ.toString() + " сум",
                             style: const TextStyle(
                                 color: Color(0xff202020),
                                 fontSize: 11,
@@ -299,7 +345,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               twoButton(),
-
             ],
           ),
         ),

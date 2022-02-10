@@ -5,20 +5,21 @@ class ClipPathClass extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     ///first point(left side border radius)
-    path.moveTo(0, 50);
-    var controlPoint1 = Offset(10, 25);
-    var endPoint1 = Offset(50, 18);
+    path.moveTo(0, 55);
+    var controlPoint1 = Offset(5, 20);
+    var endPoint1 = Offset(50, 15);
     path.quadraticBezierTo(controlPoint1.dx, controlPoint1.dy, endPoint1.dx, endPoint1.dy);
     path.lineTo(size.width/2-15, 1);
+
     ///second point(top radius)
     var controlPoint2 = Offset(size.width / 2, 1);
     var endPoint2 = Offset(size.width/2+15, 0);
     path.quadraticBezierTo(controlPoint2.dx, controlPoint2.dy, endPoint2.dx, endPoint2.dy);
 
     ///third point(right side border radius)
-    path.lineTo(size.width-50, 18);
-    var controlPoint3 = Offset(size.width-10, 25);
-    var endPoint3 = Offset(size.width, 50);
+    path.lineTo(size.width-50, 15);
+    var controlPoint3 = Offset(size.width-5, 20);
+    var endPoint3 = Offset(size.width, 55);
     path.quadraticBezierTo(controlPoint3.dx, controlPoint3.dy, endPoint3.dx, endPoint3.dy);
     path.lineTo(size.width, size.height / 18);
 
