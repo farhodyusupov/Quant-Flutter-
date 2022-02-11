@@ -43,46 +43,60 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            actions: const [
-              SizedBox()
-            ],
+            actions: const [SizedBox()],
             automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: AppBarWidget(),
           ),
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              carousel(),
-              Stack(
+              Column(
                 children: [
-                  const LineChartWidget(),
-                  Positioned(
-                    right: 0,
-                    top: size.height / 19,
-                    child: GestureDetector(
-                      onTap: () {
-                        _scaffoldkey.currentState!.openEndDrawer();
-                      },
-                      child: Container(
-                        width: 14,
-                        height: 68,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF7BA3F2),
-                          border: Border.all(color: Colors.white),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(4.2),
-                            bottomLeft: Radius.circular(4.2),
+                  carousel(),
+                  AnimatedContainer(
+                    height: selected?0:size.height/5,
+                    duration: Duration(seconds: 1),
+                    child: Stack(
+                      children: [
+                        const LineChartWidget(),
+                        Positioned(
+                          right: 0,
+                          top: size.height / 19,
+                          child: GestureDetector(
+                            onTap: () {
+                              _scaffoldkey.currentState!.openEndDrawer();
+                            },
+                            child: Container(
+                              width: 14,
+                              height: 68,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF7BA3F2),
+                                border: Border.all(color: Colors.white),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.2),
+                                  bottomLeft: Radius.circular(4.2),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
               ),
-              Positioned(
-                top: size.height / 2,
-                child: transaction(),
+
+
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: AnimatedContainer(
+                  alignment: Alignment.bottomCenter,
+                  height: selected ? size.height / 8*5: size.height / 7 * 3,
+                  duration: const Duration(seconds: 1),
+                  child: transaction(),
+                ),
               ),
             ],
           ),
@@ -93,7 +107,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget twoButton() {
     return Container(
-      padding: EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.only(bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -105,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color(0xff7BA3F2)),
+                  color: const Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -113,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(
+                  const Text(
                     "Оплата",
                     style: TextStyle(
                         color: Color(0xffFFFFFF),
@@ -132,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color(0xff7BA3F2)),
+                  color: const Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -140,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(
+                  const Text(
                     "Переводы",
                     style: TextStyle(
                         color: Color(0xffFFFFFF),
@@ -262,9 +276,16 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           child: Column(
             children: [
-              SvgPicture.asset(
-                "assets/icons/topButton.svg",
-                color: Color(0xffEFF1FF),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selected = !selected;
+                  });
+                },
+                child: SvgPicture.asset(
+                  "assets/icons/topButton.svg",
+                  color: Color(0xffEFF1FF),
+                ),
               ),
               const SizedBox(
                 height: 20,
