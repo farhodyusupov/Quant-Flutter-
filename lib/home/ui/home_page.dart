@@ -183,75 +183,79 @@ class _HomePageState extends State<HomePage> {
                 (BuildContext context, int itemIndex, int pageViewIndex) => Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    karta[itemIndex].cardType == "uzcard"
-                        ? Image.asset("assets/icons/uzcard.png")
-                        : Image.asset(
-                            "assets/icons/Object.png",
-                          ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    if (state is HideCardSummaState)
-                      Text(
-                        state.isHide
-                            ? hideSumma(karta[itemIndex].summa.toString()) +
-                                " сум"
-                            : karta[itemIndex].summa.toString() + " сум",
-                        style: const TextStyle(
-                            fontSize: 22,
-                            fontFamily: "Proxima",
-                            fontWeight: FontWeight.w900,
-                            fontStyle: FontStyle.normal,
-                            color: Colors.white),
-                      )
-                    else
-                      Text(
-                        karta[itemIndex].summa.toString() + " сум",
-                        style: const TextStyle(
-                            fontSize: 22,
-                            fontFamily: "Proxima",
-                            fontWeight: FontWeight.w900,
-                            fontStyle: FontStyle.normal,
-                            color: Colors.white),
+
+                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      karta[itemIndex].cardType == "uzcard"
+                          ? Image.asset("assets/icons/uzcard.png")
+                          : Image.asset(
+                              "assets/icons/Object.png",
+                              fit: BoxFit.fill,
+                            ),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      if (state is HideCardSummaState)
                         Text(
-                          hideCardNumber(
-                              karta[itemIndex].cardNumber.toString()),
+                          state.isHide
+                              ? hideSumma(karta[itemIndex].summa.toString()) +
+                                  " сум"
+                              : karta[itemIndex].summa.toString() + " сум",
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Proxima",
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
+                              fontSize: 22,
+                              fontFamily: "Proxima",
+                              fontWeight: FontWeight.w900,
+                              fontStyle: FontStyle.normal,
+                              color: Colors.white),
+                        )
+                      else
                         Text(
-                          karta[itemIndex].date,
+                          karta[itemIndex].summa.toString() + " сум",
                           style: const TextStyle(
-                              fontWeight: FontWeight.w600,
+                              fontSize: 22,
+                              fontFamily: "Proxima",
+                              fontWeight: FontWeight.w900,
+                              fontStyle: FontStyle.normal,
+                              color: Colors.white),
+                        ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            hideCardNumber(
+                                karta[itemIndex].cardNumber.toString()),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
-                              fontFamily: "Proxima"),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "Proxima",
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            karta[itemIndex].date,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: "Proxima"),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
               ],
             ),
             options: CarouselOptions(
+              enableInfiniteScroll: true,
               autoPlay: false,
+
               enlargeCenterPage: true,
               viewportFraction: 0.9,
               aspectRatio: 2.0,
