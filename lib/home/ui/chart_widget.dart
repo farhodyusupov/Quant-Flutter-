@@ -24,6 +24,7 @@ class _LineChart extends StatelessWidget {
   }
 
   LineChartData get sampleData1 => LineChartData(
+
         lineTouchData: lineTouchData1,
         gridData: gridData,
         titlesData: titlesData1,
@@ -36,14 +37,14 @@ class _LineChart extends StatelessWidget {
   LineTouchData get lineTouchData1 => LineTouchData(
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+          tooltipBgColor: Colors.red.withOpacity(0.8),
 
         ),
       );
 
   FlTitlesData get titlesData1 => FlTitlesData(
         bottomTitles: bottomTitles,
-
+        show: true,
         rightTitles: SideTitles(showTitles: false),
         topTitles: SideTitles(showTitles: false),
         leftTitles: SideTitles(showTitles: false),
@@ -57,6 +58,7 @@ class _LineChart extends StatelessWidget {
         showTitles: true,
         reservedSize: 45,
         margin: 15,
+
         getTextStyles: (context, value) => TextStyle(
           color: const Color(0xffFFFFFF).withOpacity(0.6),
           fontSize: 10,
@@ -74,14 +76,14 @@ class _LineChart extends StatelessWidget {
 
   FlBorderData get borderData => FlBorderData(
       show: true,
-      border: Border(
+      border: const Border(
         bottom: BorderSide(color: Colors.white, width: 1),
       ));
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
         isCurved: true,
         colors: [const Color(0xffffffff)],
-        barWidth: 1,
+        barWidth: 2,
         isStrokeCapRound: false,
         dotData: FlDotData(
           show: false,
@@ -164,6 +166,7 @@ class LineChartWidgetState extends State<LineChartWidget> {
         aspectRatio: 3,
         child: _LineChart(
           isShowingMainData: isShowingMainData,
+
         ),
       ),
     );

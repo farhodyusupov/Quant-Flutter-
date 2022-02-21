@@ -13,13 +13,24 @@ class Karta {
 
 List<Karta> karta = [
   Karta(
-      summa: 1500000,
+      summa: 56461331,
       cardNumber: 8960001412107889,
       date: "09/25",
       cardType: "xumo"),
 
   Karta(
       summa: 1500000,
+      cardNumber: 89600014145621210,
+      date: "09/25",
+      cardType: 'xumo'),
+  Karta(
+      summa: 53131231321,
+      cardNumber: 8960001412107889,
+      date: "09/25",
+      cardType: "xumo"),
+
+  Karta(
+      summa: 16546313,
       cardNumber: 89600014145621210,
       date: "09/25",
       cardType: 'xumo'),

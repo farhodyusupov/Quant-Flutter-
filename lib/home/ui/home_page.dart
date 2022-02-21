@@ -22,10 +22,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double positionIndex = 0;
-
+  CarouselController carouselController = CarouselController();
   final PanelController controller = PanelController();
   bool selected = false;
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
                 controller: controller,
                 parallaxEnabled: true,
-                parallaxOffset: 0.03,
+                parallaxOffset: 0.005,
                 minHeight: size.height * 0.5,
                 maxHeight: size.height * 0.69,
                 panelSnapping: false,
@@ -101,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 onPanelSlide: (position) {
-                  print(position);
+                  // print(position);
                   setState(() {
                     positionIndex = position;
                   });
@@ -128,79 +130,123 @@ class _HomePageState extends State<HomePage> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 7,
           child: CarouselSlider.builder(
+            carouselController: carouselController,
             itemCount: karta.length,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) =>
-                    Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                AnimatedContainer(
-                  width: 200,
-                  duration: Duration(seconds: 1),
-                  child: positionIndex < 0.9
-                      ? Image.asset(
-                          "assets/icons/Object.png",
-                          width: 100,
-                        )
-                      : SvgPicture.asset(
-                          "assets/icons/h.svg",
-                          width: 100,
-                          height: 20,
-                        ),
-                ),
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 100),
-                  left: positionIndex>0.9?MediaQuery.of(context).size.width*0.30:MediaQuery.of(context).size.width*0.15,
-                  top: positionIndex>0.9?0:40,
-                  // top: positionIndex>0.9 ? 50.0 : 150.0,
-                  child: Text(
-                    karta[itemIndex].summa.toString() + " сум",
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontFamily: "Proxima",
-                        fontWeight: FontWeight.w900,
-                        fontStyle: FontStyle.normal,
-                        color: Colors.white),
+                    Opacity(
+              opacity: itemIndex == activeIndex ? 1 : 0.5,
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Container(
+                    height: 10,
                   ),
-                ),
-                AnimatedPositioned(
+                  AnimatedPositioned(
+                    top: 10,
+                    left: positionIndex > 0.9
+                        ? MediaQuery.of(context).size.width * 0.13
+                        : MediaQuery.of(context).size.width * 0.01,
+                    width: positionIndex > 0.9 ? 50 : 200,
                     duration: Duration(milliseconds: 100),
-                    top: positionIndex>0.9?20:60,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          hideCardNumber(
-                              karta[itemIndex].cardNumber.toString()),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Proxima",
+                    child: positionIndex < 0.9
+                        ? Opacity(
+                            opacity: 1,
+                            child: SvgPicture.asset(
+                              "assets/icons/humo.svg",
+                              width: 90,
+                              height: 20,
+                            ),
+                          )
+                        : SvgPicture.asset(
+                            "assets/icons/h.svg",
+                            width: 24,
+                            height: 20,
                           ),
+                  ),
+                  AnimatedPositioned(
+                    duration: Duration(milliseconds: 100),
+                    left: positionIndex > 0.9
+                        ? MediaQuery.of(context).size.width * 0.25
+                        : MediaQuery.of(context).size.width * 0.16,
+                    top: positionIndex > 0.9 ? 10 : 40,
+                    // top: positionIndex>0.9 ? 50.0 : 150.0,
+                    child: Container(
+                      width: 200,
+                      child: Row(
+                        children: [
+                          Text(
+                            karta[itemIndex].summa.toString(),
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontFamily: "Proxima",
+                                fontWeight: FontWeight.w900,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.white),
+                          ),
+                          const Text(
+                            " сум",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: "Proxima",
+                                fontWeight: FontWeight.w900,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  AnimatedPositioned(
+                      duration: Duration(milliseconds: 100),
+                      left: MediaQuery.of(context).size.width * 0.07,
+                      top: positionIndex > 0.9 ? 30 : 70,
+                      child: Container(
+                        width: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              hideCardNumber(
+                                  karta[itemIndex].cardNumber.toString()),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Proxima",
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              karta[itemIndex].date,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontFamily: "Proxima"),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          karta[itemIndex].date,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: "Proxima"),
-                        ),
-                      ],
-                    )),
-              ],
+                      )),
+                ],
+              ),
             ),
             options: CarouselOptions(
+              onPageChanged: (index, nothing1) {
+                setState(() {
+                  activeIndex = index;
+                });
+                print(index);
+              },
               enableInfiniteScroll: true,
               autoPlay: false,
-              // enlargeCenterPage: true,
-              // viewportFraction: 0.9,
-              // aspectRatio: 2.0,
-              initialPage: 2,
+              enlargeCenterPage: true,
+              viewportFraction: 0.58,
+              aspectRatio: 2.0,
+              initialPage: 0,
+              // reverse: false,
             ),
           ),
         );
@@ -211,8 +257,7 @@ class _HomePageState extends State<HomePage> {
   ///transaction Container
   Widget transaction(ScrollController scrollController) {
     return ListView(
-      // controller: scrollController,
-      padding: const EdgeInsets.all(0),
+      padding: const EdgeInsets.all(20),
       children: [
         SvgPicture.asset(
           "assets/icons/topButton.svg",
@@ -222,26 +267,29 @@ class _HomePageState extends State<HomePage> {
           height: 20,
         ),
         Container(
-            padding: EdgeInsets.only(left: 20),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              "Транзакции",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: Color(0xff202020),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: "Proxima"),
-            )),
+          // padding: EdgeInsets.only(left: 20),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            "Транзакции",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                color: Color(0xff202020),
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: "Proxima"),
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
         Container(
           height: 230,
           child: ListView.builder(
             controller: scrollController,
-            padding: EdgeInsets.only(top: 20, right: 22),
             itemCount: 4,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.only(bottom: 14, left: 14),
+                padding: EdgeInsets.only(bottom: 14),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -298,6 +346,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
+        myHome(),
       ],
     );
   }
@@ -305,16 +354,17 @@ class _HomePageState extends State<HomePage> {
   /// two buttons
   Widget twoButton() {
     return Container(
-      padding: const EdgeInsets.only(bottom: 15),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
             onPressed: () {},
             child: Container(
+              width: MediaQuery.of(context).size.width*0.4,
               alignment: Alignment.center,
               height: 40,
-              width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: const Color(0xff7BA3F2)),
@@ -336,12 +386,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+           SizedBox(
+            width: MediaQuery.of(context).size.width*0.04,
+          ),
           TextButton(
             onPressed: () {},
             child: Container(
+              width: MediaQuery.of(context).size.width*0.4,
               alignment: Alignment.center,
               height: 40,
-              width: MediaQuery.of(context).size.width / 9 * 4,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: const Color(0xff7BA3F2)),
@@ -363,6 +416,33 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  ///my home button
+  Widget myHome() {
+    Size size = MediaQuery.of(context).size;
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Color(0xffC5B2FF),
+        minimumSize: Size(size.width, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      onPressed: () {},
+      child: Row(
+        children: [
+          SvgPicture.asset("assets/icons/myHome.svg"),
+          SizedBox(
+            width: 15,
+          ),
+          Text(
+            "My home",
+            style: TextStyle(color: Colors.white),
+          )
         ],
       ),
     );
