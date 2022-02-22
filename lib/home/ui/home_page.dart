@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:quant_flutter_new/constants.dart';
@@ -103,7 +104,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 onPanelSlide: (position) {
-                  // print(position);
                   setState(() {
                     positionIndex = position;
                   });
@@ -257,14 +257,15 @@ class _HomePageState extends State<HomePage> {
   ///transaction Container
   Widget transaction(ScrollController scrollController) {
     return ListView(
-      padding: const EdgeInsets.all(20),
+      // controller: scrollController,
+      padding: const EdgeInsets.only(left: 20, right: 20),
       children: [
         SvgPicture.asset(
           "assets/icons/topButton.svg",
           color: Color(0xffEFF1FF),
         ),
         const SizedBox(
-          height: 20,
+          height: 0,
         ),
         Container(
           // padding: EdgeInsets.only(left: 20),
@@ -283,10 +284,10 @@ class _HomePageState extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 230,
+          height: 320,
           child: ListView.builder(
             controller: scrollController,
-            itemCount: 4,
+            itemCount: transactions.length,
             itemBuilder: (context, index) {
               return Container(
                 padding: EdgeInsets.only(bottom: 14),
@@ -346,7 +347,245 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
-        myHome(),
+
+        /// scrolldan kegin chiqishi kerak
+        /// it must appear after scrolling
+       positionIndex>0.5?
+       Column(
+         children: [
+           myHome(),
+           const SizedBox(
+             height: 15,
+           ),
+           Container(
+             alignment: Alignment.centerLeft,
+             padding: const EdgeInsets.only(left: 10),
+             child: const Text(
+               "Предложения и лайфхаки",
+               style: TextStyle(
+                   color: Color(0xff202020),
+                   fontSize: 14,
+                   fontWeight: FontWeight.w600),
+             ),
+           ),
+           const SizedBox(
+             height: 10,
+           ),
+           Container(
+             height: 150,
+             child: ListView(
+               scrollDirection: Axis.horizontal,
+               children: [
+                 Container(
+                   width: 120,
+                   decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(10),
+                       image: const DecorationImage(
+                           image: AssetImage("assets/backgrounds/perevod.png"),
+                           fit: BoxFit.fill)),
+                   child: TextButton(
+                     onPressed: () {},
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Text(
+                               "0",
+                               style: TextStyle(
+                                   color: Colors.white,
+                                   fontSize: 50,
+                                   fontWeight: FontWeight.w800),
+                             ),
+                             Container(
+                               alignment: Alignment.bottomCenter,
+                               height: 40,
+                               child: const Text(
+                                 "%",
+                                 style: TextStyle(
+                                     color: Colors.white,
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 20),
+                               ),
+                             )
+                           ],
+                         ),
+                         const Text(
+                           "за переводы",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 13,
+                               fontWeight: FontWeight.w600),
+                         ),
+                         const Text(
+                           "между всеми HUMO",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontWeight: FontWeight.w300,
+                               fontSize: 10),
+                         ),
+                         const SizedBox(
+                           height: 15,
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Text(
+                               "Смотреть",
+                               style: TextStyle(color: Colors.white, fontSize: 12),
+                             ),
+                             const SizedBox(
+                               width: 10,
+                             ),
+                             SvgPicture.asset("assets/icons/smotret.svg")
+                           ],
+                         ),
+                       ],
+                     ),
+                   ),
+                 ),
+                 const SizedBox(
+                   width: 10,
+                 ),
+                 Container(
+                   width: 120,
+                   decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(10),
+                       image: const DecorationImage(
+                           image: AssetImage("assets/backgrounds/atm.png"),
+                           fit: BoxFit.fill)),
+                   child: TextButton(
+                     onPressed: () {},
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Container(
+                           alignment: Alignment.bottomCenter,
+                           height: 50,
+                           child: Image.asset(
+                             "assets/icons/atm.png",
+                             width: 40,
+                             height: 40,
+                           ),
+                         ),
+                         const SizedBox(
+                           height: 10,
+                         ),
+                         const Text(
+                           "взять наличные",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 13,
+                               fontWeight: FontWeight.w600),
+                           textAlign: TextAlign.center,
+                         ),
+                         const Text(
+                           "без пластик карты",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontWeight: FontWeight.w300,
+                               fontSize: 10),
+                         ),
+                         const SizedBox(
+                           height: 15,
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Text(
+                               "Смотреть",
+                               style: TextStyle(color: Colors.white, fontSize: 12),
+                             ),
+                             const SizedBox(
+                               width: 10,
+                             ),
+                             SvgPicture.asset("assets/icons/smotret.svg")
+                           ],
+                         ),
+                       ],
+                     ),
+                   ),
+                 ),
+                 const SizedBox(
+                   width: 10,
+                 ),
+                 Container(
+                   width: 120,
+                   decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(10),
+                       image: const DecorationImage(
+                           image: AssetImage("assets/backgrounds/yellov.png"),
+                           fit: BoxFit.fill)),
+                   child: TextButton(
+                     onPressed: () {},
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Text(
+                               "0",
+                               style: TextStyle(
+                                   color: Colors.white,
+                                   fontSize: 50,
+                                   fontWeight: FontWeight.w800),
+                             ),
+                             Container(
+                               alignment: Alignment.bottomCenter,
+                               height: 40,
+                               child: const Text(
+                                 "%",
+                                 style: TextStyle(
+                                     color: Colors.white,
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 20),
+                               ),
+                             )
+                           ],
+                         ),
+                         const Text(
+                           "за переводы",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 13,
+                               fontWeight: FontWeight.w600),
+                         ),
+                         const Text(
+                           "между всеми HUMO",
+                           style: TextStyle(
+                               color: Colors.white,
+                               fontWeight: FontWeight.w300,
+                               fontSize: 10),
+                         ),
+                         const SizedBox(
+                           height: 15,
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Text(
+                               "Смотреть",
+                               style: TextStyle(color: Colors.white, fontSize: 12),
+                             ),
+                             const SizedBox(
+                               width: 10,
+                             ),
+                             SvgPicture.asset("assets/icons/smotret.svg")
+                           ],
+                         ),
+                       ],
+                     ),
+                   ),
+                 ),
+               ],
+             ),
+           ),
+           const SizedBox(
+             height: 70,
+           )],
+       ):SizedBox()
       ],
     );
   }
@@ -354,16 +593,14 @@ class _HomePageState extends State<HomePage> {
   /// two buttons
   Widget twoButton() {
     return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.04),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
             onPressed: () {},
             child: Container(
-              width: MediaQuery.of(context).size.width*0.4,
-              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
@@ -371,7 +608,9 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset("assets/icons/receipt.svg"),
+                  SvgPicture.asset(
+                    "assets/icons/receipt.svg",
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
@@ -386,14 +625,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-           SizedBox(
-            width: MediaQuery.of(context).size.width*0.04,
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.04,
           ),
           TextButton(
             onPressed: () {},
             child: Container(
-              width: MediaQuery.of(context).size.width*0.4,
-              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
@@ -427,7 +665,7 @@ class _HomePageState extends State<HomePage> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: Color(0xffC5B2FF),
-        minimumSize: Size(size.width, 50),
+        minimumSize: Size(size.width, 60),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
