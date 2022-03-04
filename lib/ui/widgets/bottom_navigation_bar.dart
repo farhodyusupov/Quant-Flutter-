@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quant_flutter_new/home/ui/home_page.dart';
-import 'package:quant_flutter_new/izbrannoy/ui/isbrannoy_page.dart';
-import 'package:quant_flutter_new/uslugi/ui/uslugi_page.dart';
-import 'constants.dart';
+import 'package:quant_flutter_new/constants/constants.dart';
+import 'package:quant_flutter_new/ui/home/home_page.dart';
+import 'package:quant_flutter_new/ui/izbrannoy/isbrannoy_page.dart';
+import 'package:quant_flutter_new/ui/uslugi/uslugi_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

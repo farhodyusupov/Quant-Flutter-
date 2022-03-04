@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quant_flutter_new/constants.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Size size;
@@ -16,11 +15,11 @@ class CustomDrawer extends StatelessWidget {
     double iconSize = 27;
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 9.0),
+        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 9.0),
         child: Container(
           width: size.width * 0.8,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
+            color: Color(0xffFFB2BF).withOpacity(0.25),
             border: Border.all(color: Colors.white),
             borderRadius: BorderRadius.circular(5),
           ),

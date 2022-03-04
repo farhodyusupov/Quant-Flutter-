@@ -11,3 +11,10 @@ class HideCardSummaState extends HomeState{
 
   HideCardSummaState(this.isHide);
 }
+
+
+class ChangeThemeState extends HomeState{
+  final int themeNumber;
+  ChangeThemeState(this.themeNumber);
+
+}

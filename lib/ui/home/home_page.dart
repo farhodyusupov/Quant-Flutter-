@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:quant_flutter_new/constants.dart';
-import 'package:quant_flutter_new/home/bloc/home_bloc.dart';
-import 'package:quant_flutter_new/home/model/lists.dart';
+import 'package:quant_flutter_new/bloc/home_bloc/home_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:quant_flutter_new/home/ui/clip_path_widget.dart';
-import 'package:quant_flutter_new/widgets/app_bar_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quant_flutter_new/home/model/lists.dart';
+import 'package:quant_flutter_new/data/model/lists.dart';
+import 'package:quant_flutter_new/ui/widgets/app_bar_widget.dart';
+import 'package:quant_flutter_new/ui/widgets/drawer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'chart_widget.dart';
-import 'drawer_bar.dart';
+import 'home_widgets/chart_widget.dart';
+import '../widgets/end_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,11 +32,11 @@ class _HomePageState extends State<HomePage> {
     Size size = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: <Color>[childCareColor1, childCareColor2],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topCenter,
+        //   end: Alignment.bottomCenter,
+        //   colors: <Color>[childCareColor1, childCareColor2],
+        // ),
       ),
       child: SafeArea(
         child: Scaffold(
@@ -53,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: AppBarWidget(),
+            title: AppBarWidget(_scaffoldkey),
           ),
           body: Stack(
             children: [
@@ -117,6 +114,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          drawer: DrawerWidget(),
         ),
       ),
     );

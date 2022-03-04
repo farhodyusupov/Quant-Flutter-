@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quant_flutter_new/test/testWidgets.dart';
+import 'package:quant_flutter_new/constants/themes.dart';
 
-import 'bottom_navigation_bar.dart';
-import 'home/bloc/home_bloc.dart';
+import 'bloc/home_bloc/home_bloc.dart';
+import 'ui/widgets/bottom_navigation_bar.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +18,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Quant',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const BottomNavBar(),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Quant',
+
+              theme: state is ChangeThemeState?themeList[state.themeNumber]:themeList[0],
+              home: const BottomNavBar(),
+            );
+
+        },
       ),
     );
   }

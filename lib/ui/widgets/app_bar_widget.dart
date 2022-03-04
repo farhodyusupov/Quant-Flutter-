@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quant_flutter_new/home/bloc/home_bloc.dart';
+import 'package:quant_flutter_new/bloc/home_bloc/home_bloc.dart';
 
 class AppBarWidget extends StatefulWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
+   AppBarWidget(GlobalKey<ScaffoldState> scaffoldkey, {Key? key}) : super(key: key);
 
   @override
   _AppBarWidgetState createState() => _AppBarWidgetState();
@@ -12,7 +14,7 @@ class AppBarWidget extends StatefulWidget {
 
 class _AppBarWidgetState extends State<AppBarWidget> {
   bool isHide = true;
-
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     HomeBloc _bloc = BlocProvider.of<HomeBloc>(context);
@@ -20,10 +22,14 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset("assets/icons/menu.svg",
-                  color: const Color(0xFFFFFFFF))),
+          Builder(
+            builder:(conctex)=> IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: SvgPicture.asset("assets/icons/menu.svg",
+                    color: const Color(0xFFFFFFFF))),
+          ),
           Container(
             child: Row(
               children: [

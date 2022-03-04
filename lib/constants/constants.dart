@@ -18,6 +18,10 @@ const kPrimaryColor = Color(0xFF7BA3F2);
 * TextColors
 * */
 
+/*
+* drawer container color
+* */
+const drawerContainerColor = Color(0xff7BA3F2);
 
 /*
 * TextSizes
