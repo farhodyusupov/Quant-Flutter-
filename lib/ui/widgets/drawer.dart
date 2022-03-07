@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:quant_flutter_new/bloc/home_bloc/home_bloc.dart';
 import 'package:quant_flutter_new/constants/constants.dart';
 
@@ -16,6 +17,40 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   double imageSize = 30;
   double containerSize = 40;
+  String dropdownValue = 'childCare';
+
+  List<String> themeList=['childCare', 'flyingLemon', "blueTheme", 'purpleTheme'];
+
+  // late final Box box;
+  // _addInfo(int currentTheme) async {
+  //   box.put('currnetTheme', currentTheme);
+  // }
+  //
+  // _getInfo() {
+  //   // Get info from people box
+  // }
+  //
+  // _updateInfo() {
+  //   // Update info of people box
+  // }
+  //
+  // _deleteInfo() {
+  //   // Delete info from people box
+  // }
+  // void initState() {
+  //   super.initState();
+  //   // Get reference to an already opened box
+  //   box = Hive.box('peopleBox');
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   // Closes all Hive boxes
+  //   Hive.close();
+  //   super.dispose();
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +142,40 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
               const SizedBox(
                 height: 16,
+              ),
+              Container(
+                color: drawerContainerColor,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: Icon(Icons.image, color: Colors.white,),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.white),
+                  underline: Container(
+                    height: 0,
+                    color: drawerContainerColor,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+
+                    int cnt=0;
+                    for(int i=0;i<themeList.length;i++){
+                      if(themeList[i]==dropdownValue){
+                        cnt=i;
+                      }
+                    }
+                    // _addInfo(cnt);
+                    _bloc.add(ChangeThemeEvent(cnt));
+                  },
+                    items: themeList
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value, style: TextStyle(color: Colors.black),),
+                    );
+                  }).toList(),
+                ),
               ),
               TextButton(
                 onPressed: () {

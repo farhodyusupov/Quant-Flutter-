@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quant_flutter_new/constants/themes.dart';
-
+import 'package:hive/hive.dart';
 import 'bloc/home_bloc/home_bloc.dart';
 import 'ui/widgets/bottom_navigation_bar.dart';
-
-
-void main() {
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:quant_flutter_new/data/local/local_theme.dart';
+void main() async{
+  await Hive.initFlutter();
+  await Hive.openBox('quantThemes');
   runApp(const MyApp());
 }
 
@@ -20,11 +22,9 @@ class MyApp extends StatelessWidget {
       create: (context) => HomeBloc(),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Quant',
-
               theme: state is ChangeThemeState?themeList[state.themeNumber]:themeList[0],
               home: const BottomNavBar(),
             );
