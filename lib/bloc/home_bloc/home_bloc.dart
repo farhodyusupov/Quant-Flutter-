@@ -13,5 +13,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<ChangeThemeEvent>((event, emit)async{
       emit(ChangeThemeState(event.themeNumber));
     });
+
+    on<OplataWidgetEvent>((evenet, emit){
+      emit(OplataWidgetState(widgetName: evenet.widgetName));
+    });
   }
 }

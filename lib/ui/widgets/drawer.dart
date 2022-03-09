@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:quant_flutter_new/bloc/home_bloc/home_bloc.dart';
 import 'package:quant_flutter_new/constants/constants.dart';
+import 'package:quant_flutter_new/ui/widgets/select_theme.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -143,43 +144,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               const SizedBox(
                 height: 16,
               ),
-              Container(
-                color: drawerContainerColor,
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: Icon(Icons.image, color: Colors.white,),
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.white),
-                  underline: Container(
-                    height: 0,
-                    color: drawerContainerColor,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-
-                    int cnt=0;
-                    for(int i=0;i<themeList.length;i++){
-                      if(themeList[i]==dropdownValue){
-                        cnt=i;
-                      }
-                    }
-                    // _addInfo(cnt);
-                    _bloc.add(ChangeThemeEvent(cnt));
-                  },
-                    items: themeList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value, style: TextStyle(color: Colors.black),),
-                    );
-                  }).toList(),
-                ),
-              ),
+            
               TextButton(
                 onPressed: () {
-                  _bloc.add(ChangeThemeEvent(1));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SelectThemeWidget()),
+                  );
                 },
                 child: Row(
                   children: [

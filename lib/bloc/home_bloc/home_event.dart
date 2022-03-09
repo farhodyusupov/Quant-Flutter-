@@ -15,3 +15,10 @@ class   ChangeThemeEvent extends HomeEvent{
 
     ChangeThemeEvent(this.themeNumber);
 }
+
+
+class OplataWidgetEvent extends HomeEvent{
+  final String widgetName;
+
+  OplataWidgetEvent({required this.widgetName});
+}

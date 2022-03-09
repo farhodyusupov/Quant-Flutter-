@@ -16,5 +16,10 @@ class HideCardSummaState extends HomeState{
 class ChangeThemeState extends HomeState{
   final int themeNumber;
   ChangeThemeState(this.themeNumber);
+}
 
+class OplataWidgetState extends HomeState {
+  final String widgetName;
+
+  OplataWidgetState({required this.widgetName});
 }
