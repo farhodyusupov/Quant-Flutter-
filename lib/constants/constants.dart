@@ -33,3 +33,8 @@ const drawerContainerColor = Color(0xff7BA3F2);
 * Sizes
 * */
 
+
+/*
+* posledniy perevod
+* */
+const posledniyPerevodBorderColor = Color(0xff979797);
