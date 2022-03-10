@@ -53,8 +53,7 @@ class _HomePageState extends State<HomePage> {
               BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   return SlidingUpPanel(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(35)),
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
                       controller: controller,
                       parallaxEnabled: true,
                       parallaxOffset: 0.005,
@@ -76,18 +75,15 @@ class _HomePageState extends State<HomePage> {
                                       top: size.height / 19,
                                       child: GestureDetector(
                                         onTap: () {
-                                          _scaffoldkey.currentState!
-                                              .openEndDrawer();
+                                          _scaffoldkey.currentState!.openEndDrawer();
                                         },
                                         child: Container(
                                           width: 14,
                                           height: 68,
                                           decoration: BoxDecoration(
                                             color: const Color(0xFF7BA3F2),
-                                            border:
-                                                Border.all(color: Colors.white),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            border: Border.all(color: Colors.white),
+                                            borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(4.2),
                                               bottomLeft: Radius.circular(4.2),
                                             ),
@@ -109,8 +105,12 @@ class _HomePageState extends State<HomePage> {
                       },
                       panelBuilder: (ScrollController scrollController) {
                         return state is OplataWidgetState
-                            ? state.widgetName=='oplata'?OplataWidget()
-                            : state.widgetName=='perevod'?PerevodWidget():transaction(scrollController):transaction(scrollController);
+                            ? state.widgetName == 'oplata'
+                                ? OplataWidget()
+                                : state.widgetName == 'perevod'
+                                    ? PerevodWidget()
+                                    : transaction(scrollController)
+                            : transaction(scrollController);
                       });
                 },
               ),
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          drawer: DrawerWidget(),
+          drawer: const DrawerWidget(),
         ),
       ),
     );
@@ -130,15 +130,13 @@ class _HomePageState extends State<HomePage> {
   Widget carousel() {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        return Container(
+        return SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 7,
           child: CarouselSlider.builder(
             carouselController: carouselController,
             itemCount: karta.length,
-            itemBuilder:
-                (BuildContext context, int itemIndex, int pageViewIndex) =>
-                    Opacity(
+            itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => Opacity(
               opacity: itemIndex == activeIndex ? 1 : 0.5,
               child: Stack(
                 alignment: Alignment.topCenter,
@@ -148,11 +146,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   AnimatedPositioned(
                     top: 10,
-                    left: positionIndex > 0.9
-                        ? MediaQuery.of(context).size.width * 0.13
-                        : MediaQuery.of(context).size.width * 0.01,
+                    left: positionIndex > 0.9 ? MediaQuery.of(context).size.width * 0.13 : MediaQuery.of(context).size.width * 0.01,
                     width: positionIndex > 0.9 ? 50 : 200,
-                    duration: Duration(milliseconds: 100),
+                    duration: const Duration(milliseconds: 100),
                     child: positionIndex < 0.9
                         ? Opacity(
                             opacity: 1,
@@ -169,50 +165,37 @@ class _HomePageState extends State<HomePage> {
                           ),
                   ),
                   AnimatedPositioned(
-                    duration: Duration(milliseconds: 100),
-                    left: positionIndex > 0.9
-                        ? MediaQuery.of(context).size.width * 0.25
-                        : MediaQuery.of(context).size.width * 0.16,
+                    duration: const Duration(milliseconds: 100),
+                    left: positionIndex > 0.9 ? MediaQuery.of(context).size.width * 0.25 : MediaQuery.of(context).size.width * 0.16,
                     top: positionIndex > 0.9 ? 10 : 40,
                     // top: positionIndex>0.9 ? 50.0 : 150.0,
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       child: Row(
                         children: [
                           Text(
                             karta[itemIndex].summa.toString(),
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontFamily: "Proxima",
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.normal,
-                                color: Colors.white),
+                            style: const TextStyle(fontSize: 18, fontFamily: "Proxima", fontWeight: FontWeight.w900, fontStyle: FontStyle.normal, color: Colors.white),
                           ),
                           const Text(
                             " сум",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Proxima",
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.normal,
-                                color: Colors.white),
+                            style: TextStyle(fontSize: 14, fontFamily: "Proxima", fontWeight: FontWeight.w900, fontStyle: FontStyle.normal, color: Colors.white),
                           ),
                         ],
                       ),
                     ),
                   ),
                   AnimatedPositioned(
-                      duration: Duration(milliseconds: 100),
+                      duration: const Duration(milliseconds: 100),
                       left: MediaQuery.of(context).size.width * 0.07,
                       top: positionIndex > 0.9 ? 30 : 70,
-                      child: Container(
+                      child: SizedBox(
                         width: 200,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              hideCardNumber(
-                                  karta[itemIndex].cardNumber.toString()),
+                              hideCardNumber(karta[itemIndex].cardNumber.toString()),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
@@ -225,11 +208,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               karta[itemIndex].date,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontFamily: "Proxima"),
+                              style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 10, fontFamily: "Proxima"),
                             ),
                           ],
                         ),
@@ -266,35 +245,27 @@ class _HomePageState extends State<HomePage> {
       children: [
         SvgPicture.asset(
           "assets/icons/topButton.svg",
-          color: Color(0xffEFF1FF),
+          color: const Color(0xffEFF1FF),
         ),
-        const SizedBox(
-          height: 0,
-        ),
+        const SizedBox(height: 0),
         Container(
           // padding: EdgeInsets.only(left: 20),
           alignment: Alignment.centerLeft,
           child: const Text(
             "Транзакции",
             textAlign: TextAlign.left,
-            style: TextStyle(
-                color: Color(0xff202020),
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Proxima"),
+            style: TextStyle(color: Color(0xff202020), fontSize: 13, fontWeight: FontWeight.w700, fontFamily: "Proxima"),
           ),
         ),
-        const SizedBox(
-          height: 15,
-        ),
-        Container(
+        const SizedBox(height: 15),
+        SizedBox(
           height: 320,
           child: ListView.builder(
             controller: scrollController,
             itemCount: transactions.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.only(bottom: 14),
+                padding: const EdgeInsets.only(bottom: 14),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -305,45 +276,29 @@ class _HomePageState extends State<HomePage> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color(0xff17979797), width: 1.3),
+                            border: Border.all(color: const Color(0x17979797), width: 1.3),
                             borderRadius: BorderRadius.circular(
                               8,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 14,
-                        ),
+                        const SizedBox(width: 14),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               transactions[index].paymentTo,
-                              style: const TextStyle(
-                                  color: Color(0xff202020),
-                                  fontSize: 14,
-                                  fontFamily: "Proxima",
-                                  fontWeight: FontWeight.w600),
+                              style: const TextStyle(color: Color(0xff202020), fontSize: 14, fontFamily: "Proxima", fontWeight: FontWeight.w600),
                             ),
                             Text(transactions[index].number,
-                                style: TextStyle(
-                                    color: const Color(0xff202020)
-                                        .withOpacity(0.5),
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Proxima"))
+                                style: TextStyle(color: const Color(0xff202020).withOpacity(0.5), fontSize: 9, fontWeight: FontWeight.w500, fontFamily: "Proxima"))
                           ],
                         ),
                       ],
                     ),
                     Text(
                       "-" + transactions[index].summ.toString() + " сум",
-                      style: const TextStyle(
-                          color: Color(0xff202020),
-                          fontSize: 11,
-                          fontFamily: "Proxima",
-                          fontWeight: FontWeight.w600),
+                      style: const TextStyle(color: Color(0xff202020), fontSize: 11, fontFamily: "Proxima", fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -358,24 +313,17 @@ class _HomePageState extends State<HomePage> {
             ? Column(
                 children: [
                   myHome(),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15),
                   Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.only(left: 10),
                     child: const Text(
                       "Предложения и лайфхаки",
-                      style: TextStyle(
-                          color: Color(0xff202020),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
+                      style: TextStyle(color: Color(0xff202020), fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
+                  const SizedBox(height: 10),
+                  SizedBox(
                     height: 150,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
@@ -384,10 +332,7 @@ class _HomePageState extends State<HomePage> {
                           width: 120,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(
-                                      "assets/backgrounds/perevod.png"),
-                                  fit: BoxFit.fill)),
+                              image: const DecorationImage(image: AssetImage("assets/backgrounds/perevod.png"), fit: BoxFit.fill)),
                           child: TextButton(
                             onPressed: () {},
                             child: Column(
@@ -398,52 +343,35 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     const Text(
                                       "0",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 50,
-                                          fontWeight: FontWeight.w800),
+                                      style: TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.w800),
                                     ),
                                     Container(
                                       alignment: Alignment.bottomCenter,
                                       height: 40,
                                       child: const Text(
                                         "%",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20),
+                                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
                                       ),
                                     )
                                   ],
                                 ),
                                 const Text(
                                   "за переводы",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 const Text(
                                   "между всеми HUMO",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10),
                                 ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
+                                const SizedBox(height: 15),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Text(
                                       "Смотреть",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                      style: TextStyle(color: Colors.white, fontSize: 12),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
+                                    const SizedBox(width: 10),
                                     SvgPicture.asset("assets/icons/smotret.svg")
                                   ],
                                 ),
@@ -451,17 +379,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
+                        const SizedBox(width: 10),
                         Container(
                           width: 120,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image:
-                                      AssetImage("assets/backgrounds/atm.png"),
-                                  fit: BoxFit.fill)),
+                              borderRadius: BorderRadius.circular(10), image: const DecorationImage(image: AssetImage("assets/backgrounds/atm.png"), fit: BoxFit.fill)),
                           child: TextButton(
                             onPressed: () {},
                             child: Column(
@@ -476,38 +398,25 @@ class _HomePageState extends State<HomePage> {
                                     height: 40,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                const SizedBox(height: 10),
                                 const Text(
                                   "взять наличные",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
                                   textAlign: TextAlign.center,
                                 ),
                                 const Text(
                                   "без пластик карты",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10),
                                 ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
+                                const SizedBox(height: 15),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Text(
                                       "Смотреть",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                      style: TextStyle(color: Colors.white, fontSize: 12),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
+                                    const SizedBox(width: 10),
                                     SvgPicture.asset("assets/icons/smotret.svg")
                                   ],
                                 ),
@@ -515,17 +424,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
+                        const SizedBox(width: 10),
                         Container(
                           width: 120,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(
-                                      "assets/backgrounds/yellov.png"),
-                                  fit: BoxFit.fill)),
+                              image: const DecorationImage(image: AssetImage("assets/backgrounds/yellov.png"), fit: BoxFit.fill)),
                           child: TextButton(
                             onPressed: () {},
                             child: Column(
@@ -536,52 +440,35 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     const Text(
                                       "0",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 50,
-                                          fontWeight: FontWeight.w800),
+                                      style: TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.w800),
                                     ),
                                     Container(
                                       alignment: Alignment.bottomCenter,
                                       height: 40,
                                       child: const Text(
                                         "%",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20),
+                                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
                                       ),
                                     )
                                   ],
                                 ),
                                 const Text(
                                   "за переводы",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
                                 ),
                                 const Text(
                                   "между всеми HUMO",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10),
                                 ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
+                                const SizedBox(height: 1),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Text(
                                       "Смотреть",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                      style: TextStyle(color: Colors.white, fontSize: 12),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
+                                    const SizedBox(width: 10),
                                     SvgPicture.asset("assets/icons/smotret.svg")
                                   ],
                                 ),
@@ -592,12 +479,10 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 70,
-                  )
+                  const SizedBox(height: 70)
                 ],
               )
-            : SizedBox()
+            : const SizedBox()
       ],
     );
   }
@@ -605,36 +490,27 @@ class _HomePageState extends State<HomePage> {
   /// two buttons
   Widget twoButton() {
     return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.04),
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04),
       child: Row(
         children: [
           TextButton(
             onPressed: () {
-              BlocProvider.of<HomeBloc>(context)
-                  .add(OplataWidgetEvent(widgetName: "oplata"));
+              BlocProvider.of<HomeBloc>(context).add(OplataWidgetEvent(widgetName: "oplata"));
             },
             child: Container(
               width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: const Color(0xff7BA3F2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: const Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
                     "assets/icons/receipt.svg",
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   const Text(
                     "Оплата",
-                    style: TextStyle(
-                        color: Color(0xffFFFFFF),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700),
+                    style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
@@ -645,28 +521,20 @@ class _HomePageState extends State<HomePage> {
           ),
           TextButton(
             onPressed: () {
-              BlocProvider.of<HomeBloc>(context)
-                  .add(OplataWidgetEvent(widgetName: "perevod"));
+              BlocProvider.of<HomeBloc>(context).add(OplataWidgetEvent(widgetName: "perevod"));
             },
             child: Container(
               width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: const Color(0xff7BA3F2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: const Color(0xff7BA3F2)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset("assets/icons/arrows.svg"),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   const Text(
                     "Переводы",
-                    style: TextStyle(
-                        color: Color(0xffFFFFFF),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700),
+                    style: TextStyle(color: Color(0xffFFFFFF), fontSize: 13, fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
@@ -692,10 +560,8 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         children: [
           SvgPicture.asset("assets/icons/myHome.svg"),
-          SizedBox(
-            width: 15,
-          ),
-          Text(
+          const SizedBox(width: 15),
+          const Text(
             "My home",
             style: TextStyle(color: Colors.white),
           )
@@ -707,8 +573,7 @@ class _HomePageState extends State<HomePage> {
 
 ///  for hiding card numbers
 hideCardNumber(String number) {
-  String hidedNumber =
-      number.substring(0, 6) + "******" + number.substring(5, 11);
+  String hidedNumber = number.substring(0, 6) + "******" + number.substring(5, 11);
   return hidedNumber;
 }
 

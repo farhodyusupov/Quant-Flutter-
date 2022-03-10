@@ -13,7 +13,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  #STATE_MANAGER
   flutter_bloc: ^8.0.1
+
+  #SERVICES
+  hive: ^2.0.6
+  hive_flutter: ^1.1.0
+  dio: ^4.0.0
+
+  #UI
+  flutter_svg: ^1.0.3
   chart_sparkline: ^1.0.8
   flutter_custom_clippers: ^2.0.0
   carousel_slider: ^4.0.0
@@ -21,15 +31,12 @@ dependencies:
   dotted_border: ^2.0.0+2
   sliding_up_panel: ^2.0.0+1
   cupertino_icons: ^1.0.2
-  hive: ^2.0.6
-  hive_flutter: ^1.1.0
-  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  flutter_svg: ^1.0.3
+
 flutter:
 
   uses-material-design: true
@@ -44,7 +51,7 @@ flutter:
   fonts:
 
 
-     - family: Proxima
-       fonts:
-         - asset: assets/fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf
+    - family: Proxima
+      fonts:
+        - asset: assets/fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf
 
