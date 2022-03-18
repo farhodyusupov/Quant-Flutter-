@@ -79,3 +79,17 @@ List<Transaction> transactions = [
   Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
 
 ];
+
+class Izbrannoy {
+  final String image;
+  final String poluchatel;
+  final String poluchatelInfo;
+
+  Izbrannoy({required this.image,required this.poluchatel, required this.poluchatelInfo});
+}
+
+List<Izbrannoy> izbrannoyList = [
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53")
+];

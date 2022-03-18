@@ -137,6 +137,7 @@ class _PerevodSredstvaWidgetState extends State<PerevodSredstvaWidget> {
                         height: 5,
                       ),
                       BorderGradient(
+                        borderRadius: 10,
                         childBackColor: Colors.white,
                         color2: Color(0xffC5B2FF),
                         color1: Color(0xff7BA3F2),

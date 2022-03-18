@@ -5,8 +5,8 @@ import 'package:quant_flutter_new/bloc/home_bloc/home_bloc.dart';
 
 class AppBarWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
-
-   AppBarWidget(GlobalKey<ScaffoldState> scaffoldkey, {Key? key}) : super(key: key);
+  final String title;
+   AppBarWidget(GlobalKey<ScaffoldState> scaffoldkey, {Key? key, required this.title}) : super(key: key);
 
   @override
   _AppBarWidgetState createState() => _AppBarWidgetState();
@@ -30,6 +30,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 icon: SvgPicture.asset("assets/icons/menu.svg",
                     color: const Color(0xFFFFFFFF))),
           ),
+          Text(widget.title),
           Container(
             child: Row(
               children: [

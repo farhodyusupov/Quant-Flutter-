@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Quant',
               theme: state is ChangeThemeState?themeList[state.themeNumber]:themeList[0],
-              home:  PerevodSredstvaWidget(poluchatel: 10, otpravitelCard: "54545",summa: 6546546,),
+              home:  BottomNavBar(),
             );
 
         },

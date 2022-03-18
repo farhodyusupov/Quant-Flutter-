@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(),
+      // decoration: const BoxDecoration(),
       child: SafeArea(
         child: Scaffold(
           key: _scaffoldkey,
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: AppBarWidget(_scaffoldkey),
+            title: AppBarWidget(_scaffoldkey, title: "",),
           ),
           body: Stack(
             children: [

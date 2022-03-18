@@ -6,6 +6,7 @@ class BorderGradient extends StatelessWidget {
   final Color childBackColor;
   final double borderWidth;
   final Widget child;
+  final double borderRadius;
 
   const BorderGradient(
       {Key? key,
@@ -13,7 +14,9 @@ class BorderGradient extends StatelessWidget {
       required this.childBackColor,
       required this.color2,
       required this.color1,
-      required this.borderWidth})
+      required this.borderWidth,
+        required this.borderRadius
+      })
       : super(key: key);
 
   @override
@@ -24,15 +27,17 @@ class BorderGradient extends StatelessWidget {
             colors: [
               color1,
               color2
-            ]
+            ],
+                begin: Alignment.bottomCenter,
+          end: Alignment.topCenter
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Container(
         margin: EdgeInsets.all(borderWidth),
         decoration: BoxDecoration(
           color: childBackColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: child,
       ),
