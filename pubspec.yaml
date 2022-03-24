@@ -46,6 +46,8 @@ flutter:
     - assets/drawerIcons/
     - assets/icons/perevodIcons/
     - assets/icons/oplataIcons/
+    - assets/icons/uslugiIcons/
+    - assets/icons/zakazatKartu/
     - assets/backgrounds/
 
   fonts:

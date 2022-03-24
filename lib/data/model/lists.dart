@@ -93,3 +93,24 @@ List<Izbrannoy> izbrannoyList = [
   Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
   Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53")
 ];
+
+class Uslugi{
+  final String img;
+  final String text;
+  const Uslugi({required this.text, required this.img});
+}
+
+List<Uslugi> uslugiList=[
+  Uslugi(text: "Онлайн конверсия", img: "konversiya.png"),
+  Uslugi(text: "Кредиты", img: "kredit.png"),
+  Uslugi(text: "Вклады", img: "vklad.png"),
+  Uslugi(text: "Управление картами", img: "upravleniya.png"),
+  Uslugi(text: "Кошелёк", img: "koshelok.png"),
+  Uslugi(text: "Счета", img: "schotg.png"),
+  Uslugi(text: "Мониторинг", img: "monitoring.png"),
+  Uslugi(text: "Перевод на счет", img: "perevod.png"),
+  Uslugi(text: "Humapay", img: "humopay.png"),
+  Uslugi(text: "Заказать карту", img: "zakasat_kartu.png"),
+  Uslugi(text: "Курсы валют", img: "valyuta.png"),
+  Uslugi(text: "Выдача наличными", img: "atm.png"),
+];

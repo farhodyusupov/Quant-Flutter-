@@ -34,6 +34,7 @@ class BorderGradient extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Container(
+        alignment: Alignment.center,
         margin: EdgeInsets.all(borderWidth),
         decoration: BoxDecoration(
           color: childBackColor,
