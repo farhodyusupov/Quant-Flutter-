@@ -31,7 +31,7 @@ class _UslugiPageState extends State<UslugiPage> {
           endDrawer: CustomDrawer(
             size: size,
           ),
-          drawer: const DrawerWidget(),
+          drawer:  DrawerWidget(),
           appBar: AppBar(
             actions: const [SizedBox()],
             automaticallyImplyLeading: false,

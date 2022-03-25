@@ -15,8 +15,7 @@ class BorderGradient extends StatelessWidget {
       required this.color2,
       required this.color1,
       required this.borderWidth,
-        required this.borderRadius
-      })
+      required this.borderRadius})
       : super(key: key);
 
   @override
@@ -24,13 +23,9 @@ class BorderGradient extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [
-              color1,
-              color2
-            ],
-                begin: Alignment.bottomCenter,
-          end: Alignment.topCenter
-        ),
+            colors: [color1, color2],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter),
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Container(
