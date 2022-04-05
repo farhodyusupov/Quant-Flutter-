@@ -31,7 +31,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   sliding_up_panel: ^2.0.0+1
   cupertino_icons: ^1.0.2
-
+  flutter_neumorphic: ^3.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,6 +48,7 @@ flutter:
     - assets/icons/oplataIcons/
     - assets/icons/uslugiIcons/
     - assets/icons/zakazatKartu/
+    - assets/icons/my_home/
     - assets/backgrounds/
 
   fonts:
@@ -55,5 +56,5 @@ flutter:
 
     - family: Proxima
       fonts:
-        - asset: assets/fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf
+        - asset: assets/fonts/Proxima Nova Font.otf
 

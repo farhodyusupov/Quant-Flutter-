@@ -10,7 +10,7 @@ class ServiceAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title),
+        Text(title, style: Theme.of(context).textTheme.headline1,),
         IconButton(onPressed: (){}, icon: SvgPicture.asset("assets/icons/zakazatKartu/info.svg"))
       ],
     );

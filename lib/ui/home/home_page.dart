@@ -9,9 +9,12 @@ import 'package:quant_flutter_new/ui/home/home_widgets/oplata_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/app_bar_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/drawer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import '../widgets/custom_scaffold.dart';
 import 'home_widgets/chart_widget.dart';
 import '../widgets/end_drawer.dart';
 import 'home_widgets/perevod_widget.dart';
+import 'my_home/add_home.dart';
+import 'my_home/my_homes_add.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,12 +38,12 @@ class _HomePageState extends State<HomePage> {
     return Container(
       // decoration: const BoxDecoration(),
       child: SafeArea(
-        child: Scaffold(
+        child: CustomScaffold(
           key: _scaffoldkey,
           endDrawer: CustomDrawer(
             size: size,
           ),
-          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.transparent,
           appBar: AppBar(
             actions: const [SizedBox()],
             automaticallyImplyLeading: false,
@@ -48,79 +51,83 @@ class _HomePageState extends State<HomePage> {
             elevation: 0,
             title: AppBarWidget(_scaffoldkey, title: "",),
           ),
-          body: Stack(
-            children: [
-              BlocBuilder<HomeBloc, HomeState>(
-                builder: (context, state) {
-                  return SlidingUpPanel(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
+          body: SingleChildScrollView(
+            child: Stack(
+              children: [
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    return SlidingUpPanel(
+                      snapPoint: 0.5,
                       controller: controller,
-                      parallaxEnabled: true,
-                      parallaxOffset: 0.005,
-                      minHeight: size.height * 0.5,
-                      maxHeight: size.height * 0.69,
-                      panelSnapping: false,
-                      body: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                carousel(),
-                                Stack(
-                                  children: [
-                                    const LineChartWidget(),
-                                    Positioned(
-                                      right: 0,
-                                      top: size.height / 19,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          _scaffoldkey.currentState!.openEndDrawer();
-                                        },
-                                        child: Container(
-                                          width: 14,
-                                          height: 68,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF7BA3F2),
-                                            border: Border.all(color: Colors.white),
-                                            borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(4.2),
-                                              bottomLeft: Radius.circular(4.2),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
+                        parallaxEnabled: true,
+                        parallaxOffset: 0.005,
+                        minHeight: size.height * 0.5,
+                        maxHeight: size.height * 0.69,
+                        panelSnapping: false,
+                        body: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  carousel(),
+                                  // Stack(
+                                  //   children: [
+                                  //     const LineChartWidget(),
+                                  //     Positioned(
+                                  //       right: 0,
+                                  //       top: size.height / 19,
+                                  //       child: GestureDetector(
+                                  //         onTap: () {
+                                  //           _scaffoldkey.currentState!.openEndDrawer();
+                                  //         },
+                                  //         child: Container(
+                                  //           width: 14,
+                                  //           height: 68,
+                                  //           decoration: BoxDecoration(
+                                  //             color: const Color(0xFF7BA3F2),
+                                  //             border: Border.all(color: Colors.white),
+                                  //             borderRadius: const BorderRadius.only(
+                                  //               topLeft: Radius.circular(4.2),
+                                  //               bottomLeft: Radius.circular(4.2),
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      onPanelSlide: (position) {
-                        setState(() {
-                          positionIndex = position;
-                        });
-                      },
-                      panelBuilder: (ScrollController scrollController) {
-                        return state is OplataWidgetState
-                            ? state.widgetName == 'oplata'
-                                ? OplataWidget()
-                                : state.widgetName == 'perevod'
-                                    ? PerevodWidget()
-                                    : transaction(scrollController)
-                            : transaction(scrollController);
-                      });
-                },
-              ),
-              Positioned(
-                bottom: 0,
-                child: twoButton(),
-              ),
-            ],
+                        onPanelSlide: (position) {
+                          setState(() {
+                            positionIndex = position;
+                          });
+                        },
+                        panelBuilder: (ScrollController scrollController) {
+                          return state is OplataWidgetState
+                              ? state.widgetName == 'oplata'
+                                  ? OplataWidget()
+                                  : state.widgetName == 'perevod'
+                                      ? PerevodWidget()
+                                      : transaction(scrollController)
+                              : transaction(scrollController);
+                        }
+                        );
+                  },
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: twoButton(),
+                ),
+              ],
+            ),
           ),
-          drawer: const DrawerWidget(),
+          drawer:  DrawerWidget(),
         ),
       ),
     );
@@ -240,7 +247,8 @@ class _HomePageState extends State<HomePage> {
   ///transaction Container
   Widget transaction(ScrollController scrollController) {
     return ListView(
-      // controller: scrollController,
+      shrinkWrap: true,
+      controller: scrollController,
       padding: const EdgeInsets.only(left: 20, right: 20),
       children: [
         SvgPicture.asset(
@@ -249,7 +257,6 @@ class _HomePageState extends State<HomePage> {
         ),
         const SizedBox(height: 0),
         Container(
-          // padding: EdgeInsets.only(left: 20),
           alignment: Alignment.centerLeft,
           child: const Text(
             "Транзакции",
@@ -261,7 +268,9 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 320,
           child: ListView.builder(
-            controller: scrollController,
+            shrinkWrap: false,
+            physics: NeverScrollableScrollPhysics(),
+            // controller: scrollController,
             itemCount: transactions.length,
             itemBuilder: (context, index) {
               return Container(
@@ -500,7 +509,16 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: const Color(0xff7BA3F2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), gradient: LinearGradient(
+                colors: [
+                  Color(0xffC5B2FF),
+                  Color(0xffAEADFB),
+                  Color(0xff9FAAF8),
+                  Color(0xff94A8F6),
+                  Color(0xff85A5F4),
+                  Color(0xff7BA3F2)
+                ]
+              )),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -526,7 +544,16 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: MediaQuery.of(context).size.width * 0.4,
               height: 40,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: const Color(0xff7BA3F2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(7),gradient: LinearGradient(
+                  colors: [
+                    Color(0xffC5B2FF),
+                    Color(0xffAEADFB),
+                    Color(0xff9FAAF8),
+                    Color(0xff94A8F6),
+                    Color(0xff85A5F4),
+                    Color(0xff7BA3F2)
+                  ]
+              )),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -556,7 +583,12 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyHomeAdd()),
+        );
+      },
       child: Row(
         children: [
           SvgPicture.asset("assets/icons/myHome.svg"),

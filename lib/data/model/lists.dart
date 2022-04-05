@@ -91,6 +91,11 @@ class Izbrannoy {
 List<Izbrannoy> izbrannoyList = [
   Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
   Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
+  Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53"),
   Izbrannoy(image: "assets/icons/beeline.png", poluchatel: "Beeline", poluchatelInfo: "+998 90 515 57 53")
 ];
 
@@ -114,3 +119,21 @@ List<Uslugi> uslugiList=[
   Uslugi(text: "Курсы валют", img: "valyuta.png"),
   Uslugi(text: "Выдача наличными", img: "atm.png"),
 ];
+
+
+
+class HomeServices {
+  final String image;
+  final String service;
+  final String description;
+
+
+  HomeServices({required this.image, required this.description, required this.service});
+}
+
+List<HomeServices> homeServices = [
+  HomeServices(image: "assets/icons/my_home/beeline.png", description: "+998 90 438 22 08", service: "Номер телефона"),
+  HomeServices(image: "assets/icons/my_home/beeline.png", description: "8600 31** **** 7000", service: "Перевод на счет")
+];
+
+

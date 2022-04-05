@@ -17,10 +17,20 @@ class RegistrationScreen extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [
-              Color(0xFFFFB2BF),
-              Color(0xFFC5B2FF),
-            ]),
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color(0xFF5E47D1),
+                  Color(0xFF7F54C2),
+                  Color(0xFF935CB9),
+                  Color(0xFFA062B3),
+                  Color(0xFFAD66AD),
+                  Color(0xFFBA6CA7),
+                  Color(0xFFC872A1),
+                  Color(0xFFD2759C),
+                  Color(0xFFE07B96),
+                ]),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

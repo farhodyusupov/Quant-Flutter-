@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quant_flutter_new/constants/themes.dart';
 import 'package:hive/hive.dart';
 import 'package:quant_flutter_new/ui/auth_login/registration_screen.dart';
+import 'package:quant_flutter_new/ui/home/my_home/my_homes_add.dart';
 import 'bloc/home_bloc/home_bloc.dart';
 import 'ui/widgets/bottom_navigation_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Quant',
             theme: state is ChangeThemeState ? themeList[state.themeNumber] : themeList[0],
-            home: RegistrationScreen(),
+            home: BottomNavBar(),
           );
         },
       ),
