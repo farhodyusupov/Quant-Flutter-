@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quant_flutter_new/constants/constants.dart';
-import 'package:quant_flutter_new/ui/home/home_widgets/perevod_zavershen.dart';
+import 'package:quant_flutter_new/ui/home/perevod//perevod_zavershen.dart';
 import 'package:quant_flutter_new/ui/widgets/border_gradient_widget.dart';
 
-import 'clip_path_widget.dart';
+import '../home_widgets/clip_path_widget.dart';
 
 class PerevodSredstvaWidget extends StatefulWidget {
   final int poluchatel;

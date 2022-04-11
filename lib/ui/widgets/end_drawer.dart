@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Size size;
@@ -13,22 +14,46 @@ class CustomDrawer extends StatelessWidget {
     double containerSize = 76;
     double fontSize = 10;
     double iconSize = 27;
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 9.0),
-        child: Container(
-          width: size.width * 0.8,
-          decoration: BoxDecoration(
-            color: Color(0xffFFB2BF).withOpacity(0.25),
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(5),
-          ),
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaY: 3,sigmaX: 3),
+      child: ClipRect(
+        child: GlassmorphicContainer(
+          alignment: Alignment.topRight,
+          borderGradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFffffff).withOpacity(0.1),
+                Color(0xFFFFFFFF).withOpacity(0.5),
+              ],
+              stops: [
+                0.1,
+                1,
+              ]),
+          height: size.height,
+          borderRadius: 0,
+          linearGradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFffffff).withOpacity(0.2),
+                Color(0xFFFFFFFF).withOpacity(0.75),
+              ],
+              stops: [
+                0.1,
+                1,
+              ]),
+          border: 1,
+          blur: 3,
+          width: size.width*0.85,
+
           child: SafeArea(
             child: Column(
               children: [
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 24),
+
                   child: Row(
                     children:  [
                       const Text(
@@ -36,7 +61,7 @@ class CustomDrawer extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Colors.white,
-                            fontSize: 18),
+                            fontSize: 15),
                       ),
                       const Spacer(),
                       IconButton(

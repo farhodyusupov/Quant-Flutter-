@@ -23,6 +23,7 @@ dependencies:
   dio: ^4.0.0
 
   #UI
+
   flutter_svg: ^1.0.3
   chart_sparkline: ^1.0.8
   flutter_custom_clippers: ^2.0.0
@@ -32,10 +33,14 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   cupertino_icons: ^1.0.2
   flutter_neumorphic: ^3.2.0
+  glassmorphism: ^3.0.0
+  easy_localization: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+
 
 flutter:
 
@@ -50,7 +55,7 @@ flutter:
     - assets/icons/zakazatKartu/
     - assets/icons/my_home/
     - assets/backgrounds/
-
+    - assets/lang/
   fonts:
 
 

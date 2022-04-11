@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:quant_flutter_new/constants/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../bloc/home_bloc/home_bloc.dart';
 
 class OplataWidget extends StatefulWidget {
   const OplataWidget({Key? key}) : super(key: key);
@@ -28,63 +31,69 @@ class _OplataWidgetState extends State<OplataWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: EdgeInsets.all(15),
-      child: ListView(
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          TextButton(
-            onPressed: () {
-              print("clicked");
-            },
-            child: Image.asset(
-              "assets/icons/oplataIcons/backButton.png",
-               color: Colors.cyan,
+    return SingleChildScrollView(
+      child: Container(
+        height: size.height*0.8,
+        padding: EdgeInsets.all(15),
+        child: ListView(
+          children: [
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Мобильные операторы",
-                style: TextStyle(
-                    color: blackTextColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
+            Container(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: () {
+                  BlocProvider.of<HomeBloc>(context).add(OplataWidgetEvent(widgetName: "transaksiya"));
+                },
+                child: Image.asset(
+                  "assets/icons/oplataIcons/backButton.png",
+                   // color: Colors.cyan,
+                ),
               ),
-              Text(
-                "Все",
-                style: TextStyle(
-                    color: blackTextColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          mobilniyOperator(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Интернет провайдеры ",
-                style: TextStyle(
-                    color: blackTextColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                "Все",
-                style: TextStyle(
-                    color: blackTextColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          internetProvider()
-        ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  "Мобильные операторы",
+                  style: TextStyle(
+                      color: blackTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  "Все",
+                  style: TextStyle(
+                      color: blackTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+            mobilniyOperator(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  "Интернет провайдеры ",
+                  style: TextStyle(
+                      color: blackTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  "Все",
+                  style: TextStyle(
+                      color: blackTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+            internetProvider()
+          ],
+        ),
       ),
     );
   }

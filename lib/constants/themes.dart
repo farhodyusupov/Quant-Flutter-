@@ -9,8 +9,7 @@ List<ThemeData> themeList = [
 
 class QuantThemes {
   static final childCare = ThemeData(
-    backgroundColor: Color(0xffFFB2BF),
-    scaffoldBackgroundColor: Color(0xffFFB2BF),
+
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white, fontFamily: "Proxima"),
       bodyText1: TextStyle(color: Colors.black,  fontFamily: "Proxima"),
@@ -30,8 +29,7 @@ class QuantThemes {
   );
 
   static final flyingLemon = ThemeData(
-    backgroundColor: Color(0xff537895),
-    scaffoldBackgroundColor: Color(0xff537895),
+
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white, fontFamily: "Proxima"),
       bodyText1: TextStyle(color: Colors.white, fontFamily: "Proxima"),
@@ -51,8 +49,7 @@ class QuantThemes {
   );
 
   static final blueTheme = ThemeData(
-    backgroundColor: Color(0xff05A9CA),
-    scaffoldBackgroundColor: Color(0xff05A9CA),
+
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white, fontFamily: "Proxima"),
       bodyText1: TextStyle(color: Colors.white, fontFamily: "Proxima"),
@@ -73,8 +70,7 @@ class QuantThemes {
   );
 
   static final purpleTheme = ThemeData(
-      backgroundColor: Color(0xffC5B2FF),
-      scaffoldBackgroundColor: Color(0xffC5B2FF),
+
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white, fontFamily: "Proxima"),
       bodyText1: TextStyle(color: Colors.white, fontFamily: "Proxima"),

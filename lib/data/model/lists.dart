@@ -74,9 +74,10 @@ List<Transaction> transactions = [
   Transaction("assets/icons/beeline.png", "+998 90 438 22 08", "Beeline", 15000),
   Transaction("assets/icons/uzmobile.png", "+998 99 438 22 08", "Uzmobile", 10000),
   Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
-  Transaction("assets/icons/qqb.png", "8600 3122 4567 7000", "Sadiqov Sarvarbek", 100000 ),
-  Transaction("assets/icons/qqb.png", "8600 3122 4567 7000", "Sadiqov Sarvarbek", 100000),
   Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
+  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
+  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
+
 
 ];
 
