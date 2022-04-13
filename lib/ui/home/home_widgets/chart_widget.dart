@@ -1,7 +1,7 @@
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quant_flutter_new/data/model/lists.dart';
 
 class _LineChart extends StatelessWidget {
@@ -11,19 +11,21 @@ class _LineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: LineChart(
           sampleData1,
+          swapAnimationDuration: Duration(seconds: 2),
         ),
       ),
     );
   }
 
   LineChartData get sampleData1 => LineChartData(
-
         lineTouchData: lineTouchData1,
         gridData: gridData,
         titlesData: titlesData1,
@@ -31,14 +33,38 @@ class _LineChart extends StatelessWidget {
         lineBarsData: lineBarsData1,
         minX: 0,
         minY: 0,
+
       );
 
   LineTouchData get lineTouchData1 => LineTouchData(
-        handleBuiltInTouches: true,
-        touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.red.withOpacity(0.8),
+      touchCallback: (FlTouchEvent event, LineTouchResponse ?touchResponse) {
+        if (event is FlTapUpEvent) {
 
-        ),
+        }
+      },
+      getTouchedSpotIndicator:
+          (LineChartBarData barData, List<int> indicators) {
+        return indicators.map(
+              (int index) {
+            final line = FlLine(
+                color: Colors.grey,
+                strokeWidth: 0,
+);
+            return TouchedSpotIndicatorData(
+              line,
+              FlDotData(show: true),
+            );
+          },
+        ).toList();
+      },
+      touchTooltipData: LineTouchTooltipData(
+        tooltipBgColor: Colors.transparent,
+        tooltipRoundedRadius: 20.0,
+        showOnTopOfTheChartBoxArea: true,
+        fitInsideHorizontally: true,
+        tooltipMargin: 0,
+      ),
+
       );
 
   FlTitlesData get titlesData1 => FlTitlesData(
@@ -57,7 +83,6 @@ class _LineChart extends StatelessWidget {
         showTitles: true,
         reservedSize: 45,
         margin: 15,
-
         getTextStyles: (context, value) => TextStyle(
           color: const Color(0xffFFFFFF).withOpacity(0.6),
           fontSize: 10,
@@ -83,13 +108,14 @@ class _LineChart extends StatelessWidget {
         isCurved: true,
         colors: [const Color(0xffffffff)],
         barWidth: 2,
-        isStrokeCapRound: false,
+        // dashArray: [500, 2,2,2,2,2,2,2,2,2,2,2,2,22,2,2,2,2,22,2,2,22,2,2,2,2,22,2,2,2,2,22,2,2,2,2],
+        isStrokeCapRound: true,
         dotData: FlDotData(
           show: false,
         ),
         belowBarData: BarAreaData(show: false),
         spots: [
-          FlSpot(0, 0),
+          FlSpot(0, 965464),
           FlSpot(double.parse(chartReportList[1].transactionDate),
               chartReportList[1].summaAmount),
           FlSpot(
@@ -156,17 +182,14 @@ class LineChartWidget extends StatefulWidget {
 }
 
 class LineChartWidgetState extends State<LineChartWidget> {
-  late bool isShowingMainData = true;
+  late bool isShowingMainData = false;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: AspectRatio(
-        aspectRatio: 3,
-        child: _LineChart(
-          isShowingMainData: isShowingMainData,
-
-        ),
+    return AspectRatio(
+      aspectRatio: 2.9,
+      child: _LineChart(
+        isShowingMainData: isShowingMainData,
       ),
     );
   }

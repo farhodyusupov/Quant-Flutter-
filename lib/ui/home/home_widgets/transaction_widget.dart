@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quant_flutter_new/ui/home/home_widgets/clip_path_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/border_gradient_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../data/model/lists.dart';
 import '../my_home/my_homes_add.dart';
@@ -46,7 +47,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           ),
         ),
         Container(
-          padding: EdgeInsets.only(top: 40),
+          padding: EdgeInsets.only(top: 25),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
           child: ListView(
@@ -67,14 +68,15 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Color(0xff202020),
-                            fontSize: 13,
+                            fontSize: 15,
                             fontWeight: FontWeight.w700,
-                            fontFamily: "Proxima"),
+                            fontFamily: "Proxima",
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 22),
+                    // const SizedBox(height: 1/0),
                     Container(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: EdgeInsets.only(top: 25),
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -113,6 +115,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                                     ),
                                     const SizedBox(width: 14),
                                     Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -120,7 +123,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                                           transactions[index].paymentTo,
                                           style: const TextStyle(
                                               color: Color(0xff202020),
-                                              fontSize: 14,
+                                              fontSize: 13,
                                               fontFamily: "Proxima",
                                               fontWeight: FontWeight.w600),
                                         ),
@@ -128,7 +131,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                                             style: TextStyle(
                                                 color: const Color(0xff202020)
                                                     .withOpacity(0.5),
-                                                fontSize: 9,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Proxima"))
                                       ],
@@ -384,7 +387,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 70)
+                        const SizedBox(height: 100)
                       ],
                     )
                     // : const SizedBox()

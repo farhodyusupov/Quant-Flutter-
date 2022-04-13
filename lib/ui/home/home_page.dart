@@ -7,6 +7,7 @@ import 'package:quant_flutter_new/ui/home/home_widgets/carousel_widget.dart';
 import 'package:quant_flutter_new/ui/home/oplata/oplata_widget.dart';
 import 'package:quant_flutter_new/ui/home/home_widgets/transaction_widget.dart';
 import 'package:quant_flutter_new/ui/home/home_widgets/two_button.dart';
+import 'package:quant_flutter_new/ui/test/test_widgets.dart';
 import 'package:quant_flutter_new/ui/widgets/app_bar_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/drawer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -71,10 +72,10 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
                           controller: controller,
                           parallaxEnabled: true,
-                          parallaxOffset: 0.005,
-                          minHeight: size.height * 0.55,
+                          parallaxOffset: 0.01,
+                          minHeight: size.height * 0.52,
                           maxHeight: size.height * 0.75,
-                          panelSnapping: false,
+                          panelSnapping: true,
                           body: Container(
                             height: size.height,
                             child: Column(
@@ -82,28 +83,8 @@ class _HomePageState extends State<HomePage> {
                                 CarouselWidget(positionIndex: positionIndex),
                                 Stack(
                                   children: [
-                                    const LineChartWidget(),
-                                    Positioned(
-                                      right: 0,
-                                      top: size.height / 19,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          _scaffoldkey.currentState!.openEndDrawer();
-                                        },
-                                        child: Container(
-                                          width: 14,
-                                          height: 68,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF7BA3F2),
-                                            border: Border.all(color: Colors.white),
-                                            borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(4.2),
-                                              bottomLeft: Radius.circular(4.2),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    const TestWidget(color: Colors.transparent),
+
                                   ],
                                 ),
                               ],
@@ -124,6 +105,27 @@ class _HomePageState extends State<HomePage> {
                                 : TransactionWidget(scrollController: scrollController);
                           });
                     },
+                  ),
+                  Positioned(
+                    right: 0,
+                    top: size.height / 10,
+                    child: GestureDetector(
+                      onTap: () {
+                        _scaffoldkey.currentState!.openEndDrawer();
+                      },
+                      child: Container(
+                        width: 14,
+                        height: 68,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF7BA3F2),
+                          border: Border.all(color: Colors.white),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.2),
+                            bottomLeft: Radius.circular(4.2),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 0,

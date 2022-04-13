@@ -44,21 +44,21 @@ class ChartReport {
 }
 
 List<ChartReport> chartReportList = [
-  ChartReport(summaAmount: 23416, transactionDate: "2"),
-  ChartReport(summaAmount: 456466, transactionDate: "2"),
-  ChartReport(summaAmount: 123132, transactionDate: "3"),
-  ChartReport(summaAmount: 31231, transactionDate: "4"),
-  ChartReport(summaAmount: 313212, transactionDate: "5"),
-  ChartReport(summaAmount: 231231, transactionDate: "6"),
-  ChartReport(summaAmount: 321321, transactionDate: "7"),
-  ChartReport(summaAmount: 654654, transactionDate: "8"),
-  ChartReport(summaAmount: 21322, transactionDate: "9"),
-  ChartReport(summaAmount: 123321, transactionDate: "10"),
-  ChartReport(summaAmount: 313213, transactionDate: "11"),
-  ChartReport(summaAmount: 2131312, transactionDate: "12"),
-  ChartReport(summaAmount: 2313131, transactionDate: "13"),
-  ChartReport(summaAmount: 3216845, transactionDate: "14"),
-  ChartReport(summaAmount: 2313131, transactionDate: "15"),
+  ChartReport(summaAmount: 834160, transactionDate: "2"),
+  ChartReport(summaAmount: 656466, transactionDate: "2"),
+  ChartReport(summaAmount: 420313, transactionDate: "3"),
+  ChartReport(summaAmount: 631231, transactionDate: "4"),
+  ChartReport(summaAmount: 83212, transactionDate: "5"),
+  ChartReport(summaAmount: 1231231, transactionDate: "6"),
+  ChartReport(summaAmount: 721321, transactionDate: "7"),
+  ChartReport(summaAmount: 554654, transactionDate: "8"),
+  ChartReport(summaAmount: 213228, transactionDate: "9"),
+  ChartReport(summaAmount: 93321, transactionDate: "10"),
+  ChartReport(summaAmount: 1113213, transactionDate: "11"),
+  ChartReport(summaAmount: 713131, transactionDate: "12"),
+  ChartReport(summaAmount: 431313, transactionDate: "13"),
+  ChartReport(summaAmount: 621684, transactionDate: "14"),
+  ChartReport(summaAmount: 1031313, transactionDate: "15"),
 ];
 
 class Transaction {
