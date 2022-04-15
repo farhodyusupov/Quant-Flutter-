@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quant_flutter_new/data/model/transaction.dart';
 import 'package:quant_flutter_new/ui/home/home_widgets/clip_path_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/border_gradient_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../bloc/transactions_bloc/transactions_bloc.dart';
 import '../../../data/model/lists.dart';
 import '../my_home/my_homes_add.dart';
 
@@ -34,7 +37,8 @@ class _TransactionWidgetState extends State<TransactionWidget> {
               Container(
                 decoration: BoxDecoration(
                     color: Colors.transparent,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(25))),
                 alignment: Alignment.center,
                 // height: 40,
                 child: SvgPicture.asset(
@@ -67,92 +71,107 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                         "Транзакции",
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            color: Color(0xff202020),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Proxima",
+                          color: Color(0xff202020),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Proxima",
                         ),
                       ),
                     ),
                     // const SizedBox(height: 1/0),
-                    Container(
-                      padding: EdgeInsets.only(top: 25),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        // controller: scrollController,
-                        itemCount: transactions.length,
-                        itemBuilder: (context, index) {
+                    BlocBuilder<TransactionsBloc, TransactionsState>(
+                      builder: (context, state) {
+                        if(state is GetTransactionsState){
+
                           return Container(
-                            padding: const EdgeInsets.only(bottom: 14),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Neumorphic(
-                                      style: NeumorphicStyle(
-                                          boxShape:
-                                              NeumorphicBoxShape.roundRect(
-                                                  BorderRadius.circular(10)),
-                                          depth: 2),
-                                      child: BorderGradient(
-                                        borderRadius: 9,
-                                        color2: Colors.white,
-                                        color1: Color(0xffEEEEEE),
-                                        childBackColor: Colors.white,
-                                        borderWidth: 2,
-                                        child: Container(
-                                          child: Image.asset(
-                                            transactions[index].image,
-                                            height: 35,
-                                            width: 35,
+                            padding: EdgeInsets.only(top: 25),
+                            child: ListView.builder(
+
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: state.transaction.length,
+                              itemBuilder: (context, index) {
+
+                                return Container(
+                                  padding: const EdgeInsets.only(bottom: 14),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Neumorphic(
+                                            style: NeumorphicStyle(
+                                                boxShape:
+                                                NeumorphicBoxShape.roundRect(
+                                                    BorderRadius.circular(
+                                                        10)),
+                                                depth: 2),
+                                            child: BorderGradient(
+                                              borderRadius: 9,
+                                              color2: Colors.white,
+                                              color1: Color(0xffEEEEEE),
+                                              childBackColor: Colors.white,
+                                              borderWidth: 2,
+                                              child: Container(
+                                                child: Image.asset(
+                                                  state.transaction[index].image,
+                                                  height: 35,
+                                                  width: 35,
+                                                ),
+                                                height: 40,
+                                                width: 40,
+                                              ),
+                                            ),
                                           ),
-                                          height: 40,
-                                          width: 40,
-                                        ),
+                                          const SizedBox(width: 14),
+                                          Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                state.transaction[index].paymentTo,
+                                                style: const TextStyle(
+                                                    color: Color(0xff202020),
+                                                    fontSize: 13,
+                                                    fontFamily: "Proxima",
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                              Text(state.transaction[index].number,
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color(0xff202020)
+                                                          .withOpacity(0.5),
+                                                      fontSize: 10,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontFamily: "Proxima"))
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    const SizedBox(width: 14),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          transactions[index].paymentTo,
-                                          style: const TextStyle(
-                                              color: Color(0xff202020),
-                                              fontSize: 13,
-                                              fontFamily: "Proxima",
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Text(transactions[index].number,
-                                            style: TextStyle(
-                                                color: const Color(0xff202020)
-                                                    .withOpacity(0.5),
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Proxima"))
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "-" +
-                                      transactions[index].summ.toString() +
-                                      " сум",
-                                  style: const TextStyle(
-                                      color: Color(0xff202020),
-                                      fontSize: 11,
-                                      fontFamily: "Proxima",
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
+                                      Text(
+                                        "-" +
+                                            state.transaction[index].summ.toString() +
+                                            " сум",
+                                        style: const TextStyle(
+                                            color: Color(0xff202020),
+                                            fontSize: 11,
+                                            fontFamily: "Proxima",
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
                           );
-                        },
-                      ),
+                        }
+                        else{
+                          return Center(child: Text("Bu yerda qandaydir xatolik mavjud"),);
+                        }
+                      },
                     ),
 
                     /// scrolldan kegin chiqishi kerak

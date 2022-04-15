@@ -8,6 +8,8 @@ import 'package:quant_flutter_new/ui/widgets/border_gradient_widget.dart';
 import 'package:quant_flutter_new/ui/widgets/drawer.dart';
 import 'package:quant_flutter_new/ui/widgets/end_drawer.dart';
 
+import '../widgets/custom_scaffold.dart';
+
 class UslugiPage extends StatefulWidget {
   const UslugiPage({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class _UslugiPageState extends State<UslugiPage> {
     var cont = -1;
     return Container(
       child: SafeArea(
-        child: Scaffold(
+        child: CustomScaffold(
           key: _scaffoldkey,
           endDrawer: CustomDrawer(
             size: size,

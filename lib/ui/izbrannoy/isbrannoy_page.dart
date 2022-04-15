@@ -5,6 +5,8 @@ import 'package:quant_flutter_new/ui/widgets/drawer.dart';
 import 'package:quant_flutter_new/ui/widgets/end_drawer.dart';
 import 'package:quant_flutter_new/ui/widgets/glassMorphism.dart';
 
+import '../widgets/custom_scaffold.dart';
+
 class IzbrannoyPage extends StatefulWidget {
   const IzbrannoyPage({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class _IzbrannoyPageState extends State<IzbrannoyPage> {
     Size size = MediaQuery.of(context).size;
     return Container(
       child: SafeArea(
-        child: Scaffold(
+        child: CustomScaffold(
           key: _scaffoldkey,
           endDrawer: CustomDrawer(
             size: size,
@@ -36,6 +38,7 @@ class _IzbrannoyPageState extends State<IzbrannoyPage> {
           body: Stack(
             children: [
               Container(
+                height: size.height*0.8,
                 alignment: Alignment.center,
                 child: ListView.builder(
                   itemCount: izbrannoyList.length,

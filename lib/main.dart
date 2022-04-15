@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quant_flutter_new/bloc/transactions_bloc/transactions_bloc.dart';
 import 'package:quant_flutter_new/constants/themes.dart';
 import 'package:hive/hive.dart';
 import 'package:quant_flutter_new/ui/test/test_widgets.dart';
@@ -11,9 +12,8 @@ import 'l10n/l10n.dart';
 import 'ui/widgets/bottom_navigation_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 void main() async {
-
-
   await Hive.initFlutter();
   await Hive.openBox('quantThemes');
   runApp(
@@ -27,11 +27,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Color(0xffC9C3FA)
-    ));
-    return BlocProvider(
-      create: (context) => HomeBloc(),
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Color(0xffC9C3FA)));
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc(),
+        ),
+        BlocProvider<TransactionsBloc>(
+          create: (context) => TransactionsBloc()..add(GetTransactionEvent()),
+        ),
+      ],
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return MaterialApp(

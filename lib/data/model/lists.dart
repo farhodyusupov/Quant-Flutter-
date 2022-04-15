@@ -1,3 +1,5 @@
+import 'package:quant_flutter_new/data/model/transaction.dart';
+
 class Karta {
   String cardType;
   int summa;
@@ -61,25 +63,9 @@ List<ChartReport> chartReportList = [
   ChartReport(summaAmount: 1031313, transactionDate: "15"),
 ];
 
-class Transaction {
-  final String image;
-  final String number;
-  final String paymentTo;
-  final int summ;
-
-  Transaction(this.image, this.number, this.paymentTo, this.summ);
-}
-
-List<Transaction> transactions = [
-  Transaction("assets/icons/beeline.png", "+998 90 438 22 08", "Beeline", 15000),
-  Transaction("assets/icons/uzmobile.png", "+998 99 438 22 08", "Uzmobile", 10000),
-  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
-  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
-  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
-  Transaction("assets/icons/mobiuz.png", "+998 88 438 22 08", "Mobiuz", 20000),
 
 
-];
+
 
 class Izbrannoy {
   final String image;

@@ -40,11 +40,13 @@ class _TestWidgetState extends State<TestWidget> {
           Container(
             width: size.width*1.2,
             child: SfCartesianChart(
+              enableMultiSelection: true,
               plotAreaBackgroundColor: widget.color,
               plotAreaBorderColor: widget.color,
               borderWidth: 0,
               isTransposed: false,
               primaryYAxis: NumericAxis(
+
                   borderWidth: 0,
                   maximumLabelWidth: 5,
                   maximum: 48,
@@ -52,7 +54,7 @@ class _TestWidgetState extends State<TestWidget> {
                   minorGridLines: MinorGridLines(color: widget.color),
                   borderColor: widget.color,
                   majorGridLines: MajorGridLines(color: Colors.transparent),
-                  isVisible: true,
+                  isVisible: false,
                   labelStyle: TextStyle(color: Colors.transparent),
                   axisLine: AxisLine(color: Colors.transparent)),
               primaryXAxis: CategoryAxis(
@@ -67,11 +69,15 @@ class _TestWidgetState extends State<TestWidget> {
               ),
               plotAreaBorderWidth: 0,
               tooltipBehavior: TooltipBehavior(
+                format: 'point.y',
+                shadowColor: Colors.transparent,
+                textAlignment: ChartAlignment.near,
+                elevation: 0,
+                animationDuration: 1000,
                 duration: 5000,
                 header: "",
-                tooltipPosition: TooltipPosition.auto,
                 enable: true,
-                color: Colors.white,
+                color: Color(0xff9CDAF8),
                 textStyle: TextStyle(color: Colors.black),
               ),
               backgroundColor: widget.color,
